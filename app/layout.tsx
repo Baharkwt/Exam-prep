@@ -1,13 +1,11 @@
-import './globals.css';
-import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
-import { Providers } from './providers';
+import { Providers } from "./providers";
+import "./globals.css";
+import { TempoInit } from "./tempo-init";
+import Script from "next/script";
 
-const inter = Inter({ subsets: ['latin'] });
-
-export const metadata: Metadata = {
-  title: 'Moct Platform',
-  description: 'Prepare Smarter, Score Better',
+export const metadata = {
+  title: "Moct Platform",
+  description: "A comprehensive platform for exam preparation",
 };
 
 export default function RootLayout({
@@ -17,8 +15,13 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={inter.className}>
-        <Providers>{children}</Providers>
+      <head />
+      <body>
+        <Script src="https://api.tempolabs.ai/proxy-asset?url=https://storage.googleapis.com/tempo-public-assets/error-handling.js" />
+        <Providers>
+          <TempoInit />
+          {children}
+        </Providers>
       </body>
     </html>
   );

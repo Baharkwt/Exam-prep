@@ -1,33 +1,33 @@
 "use client";
 
-import { useState } from 'react';
-import { useRouter } from 'next/navigation';
-import Link from 'next/link';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Card } from '@/components/ui/card';
+import { useState } from "react";
+import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Card } from "@/components/ui/card";
 
 export default function LoginPage() {
   const router = useRouter();
   const [showRoles, setShowRoles] = useState(false);
   const [loginData, setLoginData] = useState({
-    email: '',
-    password: ''
+    email: "",
+    password: "",
   });
 
   const handleLogin = (role: string) => {
     switch (role) {
-      case 'student':
-        router.push('/dashboard/student');
+      case "student":
+        router.push("/dashboard/student");
         break;
-      case 'admin':
-        router.push('/dashboard/admin');
+      case "admin":
+        router.push("/dashboard/admin");
         break;
-      case 'employee':
-        router.push('/dashboard/employee');
+      case "employee":
+        router.push("/dashboard/employee");
         break;
-      case 'owner':
-        router.push('/dashboard/owner');
+      case "owner":
+        router.push("/dashboard/owner");
         break;
     }
   };
@@ -49,7 +49,11 @@ export default function LoginPage() {
 
         <div className="space-y-4">
           <Button variant="outline" className="w-full h-14 font-semibold">
-            <img src="https://www.google.com/favicon.ico" alt="Google" className="w-5 h-5 mr-2" />
+            <img
+              src="https://www.google.com/favicon.ico"
+              alt="Google"
+              className="w-5 h-5 mr-2"
+            />
             Sign in with Google
           </Button>
 
@@ -64,23 +68,27 @@ export default function LoginPage() {
             </div>
           </div>
 
-          <Input 
-            type="email" 
-            placeholder="Email" 
+          <Input
+            type="email"
+            placeholder="Email"
             className="h-14 px-4 rounded-lg border-[#E2E8F0]"
             value={loginData.email}
-            onChange={(e) => setLoginData(prev => ({ ...prev, email: e.target.value }))}
+            onChange={(e) =>
+              setLoginData((prev) => ({ ...prev, email: e.target.value }))
+            }
           />
-          <Input 
-            type="password" 
-            placeholder="Password" 
+          <Input
+            type="password"
+            placeholder="Password"
             className="h-14 px-4 rounded-lg border-[#E2E8F0]"
             value={loginData.password}
-            onChange={(e) => setLoginData(prev => ({ ...prev, password: e.target.value }))}
+            onChange={(e) =>
+              setLoginData((prev) => ({ ...prev, password: e.target.value }))
+            }
           />
 
           {!showRoles ? (
-            <Button 
+            <Button
               className="w-full h-14 text-lg font-bold tracking-wide bg-[#4C51BF] hover:bg-[#434190]"
               onClick={handleLoginSubmit}
             >
@@ -88,26 +96,26 @@ export default function LoginPage() {
             </Button>
           ) : (
             <div className="grid grid-cols-2 gap-3">
-              <Button 
-                onClick={() => handleLogin('student')}
+              <Button
+                onClick={() => handleLogin("student")}
                 className="h-14 font-semibold bg-[#4C51BF] hover:bg-[#434190]"
               >
                 Student Login
               </Button>
-              <Button 
-                onClick={() => handleLogin('admin')}
+              <Button
+                onClick={() => handleLogin("admin")}
                 className="h-14 font-semibold bg-[#4C51BF] hover:bg-[#434190]"
               >
                 Admin Login
               </Button>
-              <Button 
-                onClick={() => handleLogin('employee')}
+              <Button
+                onClick={() => handleLogin("employee")}
                 className="h-14 font-semibold bg-[#4C51BF] hover:bg-[#434190]"
               >
                 Employee Login
               </Button>
-              <Button 
-                onClick={() => handleLogin('owner')}
+              <Button
+                onClick={() => handleLogin("owner")}
                 className="h-14 font-semibold bg-[#4C51BF] hover:bg-[#434190]"
               >
                 Owner Login
@@ -116,8 +124,11 @@ export default function LoginPage() {
           )}
 
           <p className="text-center text-sm text-muted-foreground">
-            Don't have an account?{' '}
-            <Link href="/register" className="text-primary font-medium hover:underline">
+            Don't have an account?{" "}
+            <Link
+              href="/register"
+              className="text-primary font-medium hover:underline"
+            >
               Register
             </Link>
           </p>
