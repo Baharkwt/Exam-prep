@@ -125,8 +125,7 @@ export default function HomePage() {
       </header>
 
       {/* Hero Section */}
-      <section className="relative py-20 px-4 text-center">
-        <div className="absolute inset-0 bg-gradient-to-b from-[#2D3748] to-[#1A202C] opacity-70" />
+      <section className="relative py-20 px-4 text-center bg-gradient-to-b from-[#2D3748] to-[#1A202C]">
         <div className="relative max-w-4xl mx-auto space-y-6">
           <h2 className="text-4xl font-bold mb-6 text-white">
             Prepare Smarter, Score Better

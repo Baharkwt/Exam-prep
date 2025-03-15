@@ -1,4 +1,84 @@
- py-2 w-full" placeholder="Search..." />
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { cn } from "@/lib/utils";
+import { Menu, Search } from "lucide-react";
+
+type NavItem = {
+  title: string;
+  href: string;
+  icon: React.ReactNode;
+};
+
+export function Sidebar() {
+  const pathname = usePathname();
+  const [isOpen, setIsOpen] = useState(false);
+
+  const navItems: NavItem[] = [
+    {
+      title: "Dashboard",
+      href: "/dashboard/student",
+      icon: <span className="h-4 w-4">📊</span>,
+    },
+    {
+      title: "Courses",
+      href: "/dashboard/student/courses",
+      icon: <span className="h-4 w-4">📚</span>,
+    },
+    {
+      title: "Tests",
+      href: "/dashboard/student/tests",
+      icon: <span className="h-4 w-4">📝</span>,
+    },
+    {
+      title: "Calendar",
+      href: "/dashboard/student/calendar",
+      icon: <span className="h-4 w-4">📅</span>,
+    },
+    {
+      title: "Performance",
+      href: "/dashboard/student/performance",
+      icon: <span className="h-4 w-4">📈</span>,
+    },
+    {
+      title: "PDF Courses",
+      href: "/dashboard/student/pdf-courses",
+      icon: <span className="h-4 w-4">📄</span>,
+    },
+    {
+      title: "Current Affairs",
+      href: "/dashboard/student/current-affairs",
+      icon: <span className="h-4 w-4">🌍</span>,
+    },
+    {
+      title: "Speed Drill",
+      href: "/dashboard/student/speed-drill",
+      icon: <span className="h-4 w-4">⚡</span>,
+    },
+  ];
+
+  return (
+    <>
+      {/* Mobile menu button */}
+      <div className="fixed top-0 left-0 z-40 flex h-16 items-center gap-2 border-b bg-background px-4 md:hidden">
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="inline-flex h-10 w-10 items-center justify-center rounded-md hover:bg-accent"
+        >
+          <Menu className="h-6 w-6" />
+        </button>
+        <h1 className="text-xl font-bold">Moct Platform</h1>
+      </div>
+
+      {/* Search (mobile) */}
+      <div className="fixed top-16 left-0 right-0 z-30 border-b bg-background px-4 py-2 md:hidden">
+        <div className="relative">
+          <Search className="absolute left-2.5 top-2.5 h-4 w-4 text-muted-foreground" />
+          <input
+            type="search"
+            className="w-full rounded-md border bg-background pl-8 py-2"
+            placeholder="Search..."
+          />
         </div>
       </div>
 

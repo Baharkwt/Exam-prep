@@ -50,10 +50,7 @@ export default function AdminDashboard() {
         <DashboardStats stats={mockStats} />
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-          <PerformanceChart
-            data={mockUserData}
-            title="User Growth"
-          />
+          <PerformanceChart data={mockUserData} title="User Growth" />
 
           <Card className="p-6">
             <h3 className="font-semibold mb-4">Pending Approvals</h3>
@@ -64,7 +61,9 @@ export default function AdminDashboard() {
                   className="flex items-center justify-between border-b pb-4"
                 >
                   <div>
-                    <p className="font-medium">New Course: Advanced Mathematics</p>
+                    <p className="font-medium">
+                      New Course: Advanced Mathematics
+                    </p>
                     <p className="text-sm text-muted-foreground">
                       Submitted by John Doe
                     </p>
