@@ -19,44 +19,40 @@ interface Question {
 const mockQuestions: Question[] = [
   {
     id: 1,
-    question: "If a train travels 360 kilometers in 4 hours, what is its average speed in kilometers per hour?",
+    question:
+      "If a train travels 360 kilometers in 4 hours, what is its average speed in kilometers per hour?",
     options: ["80 km/h", "90 km/h", "85 km/h", "95 km/h"],
     correct: 0,
-    explanation: "Average speed = Total distance / Total time = 360 km / 4 h = 90 km/h"
+    explanation:
+      "Average speed = Total distance / Total time = 360 km / 4 h = 90 km/h",
   },
   {
     id: 2,
-    question: "What is the compound interest on Rs. 1000 at 10% per annum for 2 years?",
+    question:
+      "What is the compound interest on Rs. 1000 at 10% per annum for 2 years?",
     options: ["Rs. 210", "Rs. 220", "Rs. 221", "Rs. 231"],
     correct: 2,
-    explanation: "CI = P(1 + r/100)ⁿ - P = 1000(1 + 10/100)² - 1000 = 1210 - 1000 = 210"
+    explanation:
+      "CI = P(1 + r/100)ⁿ - P = 1000(1 + 10/100)² - 1000 = 1210 - 1000 = 210",
   },
   {
     id: 3,
-    question: "If 6 workers can complete a job in 12 days, how many days will it take for 9 workers to complete the same job?",
+    question:
+      "If 6 workers can complete a job in 12 days, how many days will it take for 9 workers to complete the same job?",
     options: ["8 days", "10 days", "15 days", "18 days"],
     correct: 0,
-    explanation: "Using the formula: (W₁ × D₁) = (W₂ × D₂), where W is workers and D is days\n(6 × 12) = (9 × D₂)\n72 = 9D₂\nD₂ = 8 days"
-  }
+    explanation:
+      "Using the formula: (W₁ × D₁) = (W₂ × D₂), where W is workers and D is days\n(6 × 12) = (9 × D₂)\n72 = 9D₂\nD₂ = 8 days",
+  },
 ];
 
-export function generateStaticParams() {
-  const exams = ["ibps-po", "sbi-po", "ibps-clerk", "ssc-cgl"];
-  const types = ["full", "sectional", "speed", "previous"];
-  const testIds = Array.from({ length: 20 }, (_, i) => `test-${i + 1}`);
-  
-  return exams.flatMap(exam => 
-    types.flatMap(testType =>
-      testIds.map(testId => ({
-        exam,
-        testType,
-        testId
-      }))
-    )
-  );
-}
+// Removed generateStaticParams to avoid conflict with "use client"
 
-export default function TestPage({ params }: { params: { exam: string; testType: string; testId: string } }) {
+export default function TestPage({
+  params,
+}: {
+  params: { exam: string; testType: string; testId: string };
+}) {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [selectedOption, setSelectedOption] = useState<number | null>(null);
   const [answers, setAnswers] = useState<(number | null)[]>([]);
@@ -113,7 +109,7 @@ export default function TestPage({ params }: { params: { exam: string; testType:
   const formatTime = (seconds: number) => {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
-    return `${minutes}:${remainingSeconds.toString().padStart(2, '0')}`;
+    return `${minutes}:${remainingSeconds.toString().padStart(2, "0")}`;
   };
 
   return (
@@ -127,9 +123,9 @@ export default function TestPage({ params }: { params: { exam: string; testType:
                 <Timer className="w-5 h-5 text-primary" />
                 <span className="font-medium">{formatTime(timeLeft)}</span>
               </div>
-              <Progress 
-                value={(currentQuestion + 1) / mockQuestions.length * 100} 
-                className="w-32" 
+              <Progress
+                value={((currentQuestion + 1) / mockQuestions.length) * 100}
+                className="w-32"
               />
             </div>
           </div>
@@ -149,20 +145,22 @@ export default function TestPage({ params }: { params: { exam: string; testType:
                 </div>
 
                 <div className="space-y-3">
-                  {mockQuestions[currentQuestion].options.map((option, index) => (
-                    <div
-                      key={index}
-                      className={cn(
-                        "p-4 rounded-lg border cursor-pointer transition-colors",
-                        selectedOption === index
-                          ? "bg-primary/10 border-primary"
-                          : "hover:bg-accent"
-                      )}
-                      onClick={() => handleOptionSelect(index)}
-                    >
-                      <p className="font-medium">{option}</p>
-                    </div>
-                  ))}
+                  {mockQuestions[currentQuestion].options.map(
+                    (option, index) => (
+                      <div
+                        key={index}
+                        className={cn(
+                          "p-4 rounded-lg border cursor-pointer transition-colors",
+                          selectedOption === index
+                            ? "bg-primary/10 border-primary"
+                            : "hover:bg-accent",
+                        )}
+                        onClick={() => handleOptionSelect(index)}
+                      >
+                        <p className="font-medium">{option}</p>
+                      </div>
+                    ),
+                  )}
                 </div>
 
                 <div className="flex justify-between pt-4">
@@ -209,8 +207,8 @@ export default function TestPage({ params }: { params: { exam: string; testType:
                             optIndex === question.correct
                               ? "bg-green-100 dark:bg-green-900/20"
                               : answers[index] === optIndex
-                              ? "bg-red-100 dark:bg-red-900/20"
-                              : "bg-accent"
+                                ? "bg-red-100 dark:bg-red-900/20"
+                                : "bg-accent",
                           )}
                         >
                           <p>{option}</p>
@@ -219,7 +217,8 @@ export default function TestPage({ params }: { params: { exam: string; testType:
                     </div>
                     {question.explanation && (
                       <p className="mt-2 text-muted-foreground">
-                        <span className="font-medium">Explanation:</span> {question.explanation}
+                        <span className="font-medium">Explanation:</span>{" "}
+                        {question.explanation}
                       </p>
                     )}
                   </div>
